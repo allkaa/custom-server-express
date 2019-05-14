@@ -3,6 +3,192 @@ https://github.com/
 allkaa
 h...3!
 allkaa@yahoo.com
+======================================================================================================================
+akaarna@unl:~$ cd custom-server-express
+akaarna@unl:~/custom-server-express$ ls -A
+components  HOC_sample.js    nodeServer.js      packageSaved.json                   README_custom-server-express.md  serverNew.js
+.directory  next.config.js   out                packageSavedUsingWithRouter.json    README.md                        serverSaved.js
+GitHub.txt  next.config.txt  package.json       packageUsingRouterBasicSample.json  serverExpressOriginal.js         static
+.gitignore  node_modules     package-lock.json  pages                               server.js                        .vscode
+akaarna@unl:~/custom-server-express$ git init
+Initialized empty Git repository in /home/akaarna/custom-server-express/.git/
+akaarna@unl:~/custom-server-express$ git commit -m "Fist Commit"
+On branch master
+
+Initial commit
+
+Untracked files:
+        .directory
+        .gitignore
+        .vscode/
+        GitHub.txt
+        HOC_sample.js
+        README.md
+        README_custom-server-express.md
+        components/
+        next.config.js
+        next.config.txt
+        nodeServer.js
+        out/
+        package-lock.json
+        package.json
+        packageSaved.json
+        packageSavedUsingWithRouter.json
+        packageUsingRouterBasicSample.json
+        pages/
+        server.js
+        serverExpressOriginal.js
+        serverNew.js
+        serverSaved.js
+        static/
+
+nothing added to commit but untracked files present
+akaarna@unl:~/custom-server-express$ git commit -am "Commit all" 
+On branch master
+
+Initial commit
+
+Untracked files:
+        .directory
+        .gitignore
+        .vscode/
+        GitHub.txt
+        HOC_sample.js
+        README.md
+        README_custom-server-express.md
+        components/
+        next.config.js
+        next.config.txt
+        nodeServer.js
+        out/
+        package-lock.json
+        package.json
+        packageSaved.json
+        packageSavedUsingWithRouter.json
+        packageUsingRouterBasicSample.json
+        pages/
+        server.js
+        serverExpressOriginal.js
+        serverNew.js
+        serverSaved.js
+        static/
+
+nothing added to commit but untracked files present
+akaarna@unl:~/custom-server-express$ git add .
+akaarna@unl:~/custom-server-express$ git commit -am "Commit all"
+[master (root-commit) 3c4f8a7] Commit all
+ Committer: AKaarna <akaarna@unl.test>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 83 files changed, 41139 insertions(+)
+ create mode 100644 .directory
+ create mode 100644 .gitignore
+ create mode 100644 .vscode/launch.json
+ create mode 100644 .vscode/settings.json
+ create mode 100644 GitHub.txt
+ create mode 100644 HOC_sample.js
+ create mode 100644 README.md
+ create mode 100644 README_custom-server-express.md
+ create mode 100644 components/ActiveLink.js
+ create mode 100644 components/Header.js
+ create mode 100644 next.config.js
+ create mode 100644 next.config.txt
+ create mode 100644 nodeServer.js
+ create mode 100644 out/404.html
+ create mode 100644 out/_next/static/chunks/0.js
+ create mode 100644 out/_next/static/chunks/0.js.map
+ create mode 100644 out/_next/static/chunks/commons.3efbe59769cf17aaa06b.js
+ create mode 100644 out/_next/static/development/dll/dll_599a58a60c43245180de.js
+ create mode 100644 out/_next/static/development/pages/_app.js
+ create mode 100644 out/_next/static/development/pages/_app.js.map
+ create mode 100644 out/_next/static/development/pages/_error.js
+ create mode 100644 out/_next/static/development/pages/_error.js.map
+ create mode 100644 out/_next/static/kANuGcZ85VXQskS~Ccktq/pages/_app.js
+ create mode 100644 out/_next/static/kANuGcZ85VXQskS~Ccktq/pages/_error.js
+ create mode 100644 out/_next/static/kANuGcZ85VXQskS~Ccktq/pages/a.js
+ create mode 100644 out/_next/static/kANuGcZ85VXQskS~Ccktq/pages/b.js
+ create mode 100644 out/_next/static/kANuGcZ85VXQskS~Ccktq/pages/c.js
+ create mode 100644 out/_next/static/kANuGcZ85VXQskS~Ccktq/pages/index.js
+ create mode 100644 out/_next/static/kANuGcZ85VXQskS~Ccktq/pages/posts.js
+ create mode 100644 out/_next/static/runtime/main-88597af5412732140193.js
+ create mode 100644 out/_next/static/runtime/main.js
+ create mode 100644 out/_next/static/runtime/main.js.map
+ create mode 100644 out/_next/static/runtime/webpack-f0c6edbea5b547edc23f.js
+ create mode 100644 out/_next/static/runtime/webpack.js
+ create mode 100644 out/_next/static/runtime/webpack.js.map
+ create mode 100644 out/a/index.html
+ create mode 100644 out/b/index.html
+ create mode 100644 out/c/index.html
+ create mode 100644 out/index.html
+ create mode 100644 out/index/index.html
+ create mode 100644 out/posts/index.html
+ create mode 100644 out/static/my-image.png
+ create mode 100644 out/static/style.css
+ create mode 100644 package-lock.json
+ create mode 100644 package.json
+ create mode 100644 packageSaved.json
+ create mode 100644 packageSavedUsingWithRouter.json
+ create mode 100644 packageUsingRouterBasicSample.json
+ create mode 100644 pages/_app.js
+ create mode 100644 pages/_appLayout.txt
+ create mode 100644 pages/_appLoadingIndicator.txt
+ create mode 100644 pages/_app_SavedWithNoWorksElements.txt
+ create mode 100644 pages/_document.js
+ create mode 100644 pages/_document.txt
+ create mode 100644 pages/a.txt
+ create mode 100644 pages/about.LoadingIndicatortxt
+ create mode 100644 pages/about.js
+ create mode 100644 pages/about.txt
+ create mode 100644 pages/aboutRouterTest.txt
+ create mode 100644 pages/b.txt
+ create mode 100644 pages/c.txt
+ create mode 100644 pages/error.txt
+ create mode 100644 pages/forever.js
+ create mode 100644 pages/forever.txt
+ create mode 100644 pages/index.js
+ create mode 100644 pages/indexLayout.txt
+ create mode 100644 pages/indexLoadingIndicator.txt
+ create mode 100644 pages/indexSaved.txt
+ create mode 100644 pages/indexSaved2.txt
+ create mode 100644 pages/indexWithRouter.txt
+ create mode 100644 pages/post.txt
+ create mode 100644 pages/postsRouterTest.txt
+ create mode 100644 pages/postsSaved.txt
+ create mode 100644 pages/readmore.txt
+ create mode 100644 pages/setup.txt
+ create mode 100644 server.js
+ create mode 100644 serverExpressOriginal.js
+ create mode 100644 serverNew.js
+ create mode 100644 serverSaved.js
+ create mode 100644 static/favicon.ico
+ create mode 100644 static/my-image.png
+ create mode 100644 static/nprogress.css
+ create mode 100644 static/style.css
+akaarna@unl:~/custom-server-express$ git remote add origin https://github.com/allkaa/custom-server-express.git
+akaarna@unl:~/custom-server-express$ git push -u origin master
+Username for 'https://github.com': allkaa
+Password for 'https://allkaa@github.com': 
+Counting objects: 100, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (88/88), done.
+Writing objects: 100% (100/100), 988.18 KiB | 0 bytes/s, done.
+Total 100 (delta 15), reused 0 (delta 0)
+remote: Resolving deltas: 100% (15/15), done.
+To https://github.com/allkaa/custom-server-express.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+akaarna@unl:~/custom-server-express$ 
+======================================================================================================================
 ===================================================
 Create new remote empty repository https://github.com/allkaa/nodejstest:
 
