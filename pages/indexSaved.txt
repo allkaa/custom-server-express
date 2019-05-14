@@ -1,0 +1,25 @@
+import React from 'react'
+import Link from 'next/link'
+
+// Client Side routing through Link.
+// <Link href={{ pathname: '/posts', query: { id: '2' } }} as='/posts/2_as'>
+// <Link href='/posts?id=3' as='/posts/2_as'>
+export default () => (
+  <ul>
+    <li>
+      <Link href='/a' as='/a'>
+        <a>a</a>
+      </Link>
+    </li>
+    <li>
+      <Link href='/b' as='/b'>
+        <a>b</a>
+      </Link>
+    </li>
+    <li>
+      <Link href='/posts?id=777' as='/posts/2_as'>
+        <a>post #2</a>
+      </Link>
+    </li>
+  </ul>
+)

@@ -1,0 +1,17 @@
+{
+  "name": "using-router",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "export": "next export",
+    "now-build": "next build"
+  },
+  "dependencies": {
+    "hoist-non-react-statics": "^2.2.2",
+    "next": "latest",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}

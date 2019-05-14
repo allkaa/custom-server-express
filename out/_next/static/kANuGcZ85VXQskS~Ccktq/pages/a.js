@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{W4Pv:function(n,e,t){"use strict";t.r(e);var a=t("q1tI"),o=t.n(a);e.default=function(){return o.a.createElement("div",null,"a page")}},cNoJ:function(n,e,t){(window.__NEXT_P=window.__NEXT_P||[]).push(["/a",function(){var n=t("W4Pv");return{page:n.default||n}}])}},[["cNoJ",1,0]]]);

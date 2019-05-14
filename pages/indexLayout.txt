@@ -1,0 +1,28 @@
+import React from 'react'
+
+class IndexPage extends React.Component {
+  ///*
+  constructor(props) {
+    // Get control forth (after _apps.js Layout) and have empty object {} in props,
+    super(props);
+    // `super` must be used before using `this`.
+    //this.id =  '123a' // constructor properties is not possible to change later for all descendants.
+    console.log('index.js constructor props =======================================================>:')
+    console.log(props)
+  }
+  //*/
+  // Get control very first and have {error: undefined, req, res, pathname: '/', query: {}, asPath: '/'} in props object.
+  static async getInitialProps(props) {
+    console.log('index.js getInitialProps ==========================================================>:')
+    //console.log(props)
+    return {}
+  }
+  render () {
+    // Get control fifth (after index.js constructor) and have empty object {} in props,
+    console.log('index.js props ==========================================================>: ')  // + typeof(this.props))
+    console.log(this.props)
+    return <p>Test message from index.js page</p>
+  }
+}
+
+export default IndexPage

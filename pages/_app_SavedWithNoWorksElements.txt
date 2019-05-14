@@ -1,0 +1,104 @@
+import React from 'react'
+import App, { Container } from 'next/app'
+import Link from 'next/link'
+
+/* Sample margin with four values.
+margin: 10px 5px 15px 20px;
+top margin is 10px
+right margin is 5px
+bottom margin is 15px
+left margin is 20px
+*/
+// top 0, rigth 20px, bottom 0, left 0
+const inlinelinkStyle = {
+  "margin": "10px 20px 10px 20px",
+  "font-size": "20px",
+  "font-weight": "bold"
+}
+//<p style={{ color: 'red' }}>hi there</p>; // Inline styles
+//<a style={inlinelinkStyle}>HomeNew</a>  // Inline styles
+//var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+
+class Layout extends React.Component {
+  // Get control third (after MyApp) and have children in props.
+  render () {
+    console.log('Layout _app.js props ===========>:')
+    console.log(this.props)
+    const { children } = this.props
+    return <div className='layout'>{children}</div>
+  }
+}
+
+class MyApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    console.log('MyApp _app.js getInitialProps Component ===========>:')
+    console.log(Component)
+    console.log('MyApp _app.js getInitialProps ctx ===========>:')
+    console.log(ctx)
+    let pageProps = {};
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+      console.log('MyApp _app.js getInitialProps pageProps ===========>:')
+      console.log(pageProps)
+      }
+    return { pageProps };
+  }
+
+  componentDidMount() {
+    const { router } = this.props;
+    console.log('MyApp _app.js componentDidMount props ===========>:')
+    console.log(this.props)
+    console.log(router)
+    //router.prefetch('/dynamic');
+    const as = router.asPath
+    console.log(as)
+    // Does not work even here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //router.beforePopState(({ url, as, options }) => {
+    router.beforePopState((as) => {
+      console.log('Router.beforePopState as:'); console.log(as)
+      console.log('Router.beforePopState url:'); console.log(url)
+      console.log('Router.beforePopState options:'); console.log(options)
+      // I only want to allow these two routes!
+      //as !== '/' || as !== '/readmore'
+      if (as === '/' || as === '/about') {
+        console.log('allowing page' + as)
+        return true
+      }
+      else {
+        // Have SSR render bad routes as a 404.
+        console.log('blocking page' + as)
+        window.location.href = as
+        return false
+      }
+    })
+    console.log(router.beforePopState)
+  }
+
+  render () {
+    // Get control second (after index.js getInitialProps) and have real router and empty object {}pageProps in props. 
+    console.log('MyApp _app.js render() props ===========>:')
+    console.log(this.props)
+    const { Component, pageProps } = this.props
+    return (
+      <Container>
+          <Link href='/'>
+            <a style={inlinelinkStyle}>HomeNew</a>
+          </Link>
+          <Link href='/about'>
+            <a style={inlinelinkStyle}>About</a>
+          </Link>
+          <Link href='/forever'>
+            <a style={inlinelinkStyle}>Forever</a>
+          </Link>
+          <Link href='/non-existing'>
+            <a style={inlinelinkStyle}>Non Existing Page</a>
+          </Link>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Container>
+    )
+  }
+}
+
+export default MyApp

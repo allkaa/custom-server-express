@@ -1,0 +1,30 @@
+import React from 'react'
+import Link from 'next/link'
+
+// Server Side routing thru anchor <a>.
+// Client Side routing thru Link.
+// <Link href={{ pathname: '/posts', query: { id: '666' } }}  as='/posts/with_some_ID_in_query'>
+// <Link href='/posts?id=777' as='/posts/with_some_ID_in_query'>
+// <Link prefetch href={{ pathname: '/posts', query: { id: '666' } }}  as='/posts/with_some_ID_in_query'>
+export default () => (
+  <div>
+  <img src="/static/my-image.png" alt="my image" height="42" width="42" />
+  <ul>
+    <li><a href='/c'>Server Routing thru anchor to /c test page</a></li>
+    <li><a href='/a'>a Server Routing thru anchor to /a</a></li>
+    <li><a href='/b'>b Server Routing thru anchor to /b</a></li>
+    <li>
+      <Link href='/a' as='/a'><a>a Client Routing thru next Link to /a</a></Link>
+    </li>
+    <li>
+      <Link href='/b' as='/b'><a>b Client Routing thru next Link to /b</a></Link>
+    </li>
+    <li><a href='/posts?id=777'>Server Routing thru anchor to /posts with ID in query</a></li>
+    <li>
+      <Link prefetch href={{ pathname: '/posts', query: { id: '666' } }}  as='/posts/with_some_ID_in_query'>
+        <a>Client Routing thru next Link to /posts with ID in query</a>
+      </Link>
+    </li>
+  </ul>
+  </div>
+)

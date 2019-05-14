@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{B5Bw:function(n,e,t){(window.__NEXT_P=window.__NEXT_P||[]).push(["/c",function(){var n=t("emrC");return{page:n.default||n}}])},emrC:function(n,e,t){"use strict";t.r(e);var u=t("q1tI"),w=t.n(u);e.default=function(){return w.a.createElement("div",null,"c test page")}}},[["B5Bw",1,0]]]);

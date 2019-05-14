@@ -1,0 +1,395 @@
+import React, { Component } from 'react'
+// If you want to access the router object inside any component in your app, you can use
+// the withRouter Higher-Order Component. 
+// To inject the pathname, query or asPath in your component, you can use withRouter.
+import { withRouter } from 'next/router'
+/*
+Since Next 5 we provide a way to explicitly inject the Next.js router object into pages and all their decending components.
+The router property that is injected will hold the same values as url, like pathname, asPath, and query.
+Here's an example of using withRouter:
+*/
+
+/*
+Static method getInitialProps receives a context object with the following properties:
+pathname - path section of URL
+query - query string section of URL parsed as an object e.g. {id: "666"}
+asPath - String of the actual path (including the query) shows in the browser
+req - HTTP request object (server only)
+res - HTTP response object (server only)
+err - Error object if any error is encountered during the rendering
+*/
+//static getInitialProps ({ query: { id } }) { // extracts id property from query object from props context object.
+//static getInitialProps ({ query }) { // extracts query object from props context object.
+// props is context Object {pathname: "/posts", query: {id: "666"}, asPath: "/posts/with_some_ID_in_query"}
+// NB! getInitialProps (props) is activated very first, then constructor(props) and finally render().
+class PostPage extends React.Component {
+  ///*
+  // costructor(props) - props will be router object if HOC withRouter() will be used.
+  constructor(props) {
+    super(props);
+    // `super` must be used before using `this`.
+    //this.id =  '123a' // constructor properties is not possible to change later for all descendants.
+    console.log('PostPage constructor props:')
+    console.log(props)
+    //const r = this.props.router // create failure in constructor.
+    //console.log(r)
+  }
+  //*/
+  // getInitialProps (props) is activated very first, then constructor(props) and then render().
+  static getInitialProps (props) {
+    console.log('PostPage getInitialPrps props:')
+    console.log(props) //NB! Will be executed on Server side if <a> anchor or on Client side if Link.
+    return { postId: props.query.id }
+  }
+
+  render () {
+    //const router = this.props.router
+    const {router} = this.props
+    console.log('PostPage render router:')
+    console.log(router)
+    if (this.props.postId === '666')
+    {
+      return (
+        <div>
+          <h1>My blog post #{this.props.postId}</h1>
+          <p>
+            Client Routing was used!
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      )
+    }
+    else {
+      return (
+        <div>
+          <h1>My blog post #{this.props.postId}</h1>
+          <p>
+            Server Routing was used!
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      )
+    }
+  }
+}
+
+//export default PostPage // Without higher-Order Component (HOC)  withRouter(...)  router object will be undefined.
+// NB! Higher-Order Component (HOC) withRouter(...) must be to used to get router object and it's properties:
+// pathname, query or asPath etc. Otherwise router object will be undefined.
+export default withRouter(PostPage)
+
+// Real sample of console.log(props) output on server side - context Object props on servere side when <a> anchor used:
+/*
+httpServer request at: ==> 19.2.890
+req.url ===> /posts?id=777
+PostPage getInitialPrps props:
+{ err: undefined,
+  req: 
+   IncomingMessage {
+     _readableState: 
+      ReadableState {
+        objectMode: false,
+        highWaterMark: 16384,
+        buffer: [Object],
+        length: 0,
+        pipes: null,
+        pipesCount: 0,
+        flowing: null,
+        ended: true,
+        endEmitted: false,
+        reading: false,
+        sync: true,
+        needReadable: false,
+        emittedReadable: true,
+        readableListening: false,
+        resumeScheduled: false,
+        destroyed: false,
+        defaultEncoding: 'utf8',
+        awaitDrain: 0,
+        readingMore: true,
+        decoder: null,
+        encoding: null },
+     readable: true,
+     domain: null,
+     _events: { error: [Function] },
+     _eventsCount: 1,
+     _maxListeners: undefined,
+     socket: 
+      Socket {
+        connecting: false,
+        _hadError: false,
+        _handle: [Object],
+        _parent: null,
+        _host: null,
+        _readableState: [Object],
+        readable: true,
+        domain: null,
+        _events: [Object],
+        _eventsCount: 10,
+        _maxListeners: undefined,
+        _writableState: [Object],
+        writable: true,
+        allowHalfOpen: true,
+        _bytesDispatched: 0,
+        _sockname: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        server: [Object],
+        _server: [Object],
+        _idleTimeout: 120000,
+        _idleNext: [Object],
+        _idlePrev: [Object],
+        _idleStart: 24999,
+        _destroyed: false,
+        parser: [Object],
+        on: [Function: socketOnWrap],
+        _paused: false,
+        read: [Function],
+        _consuming: true,
+        _httpMessage: [Object],
+        [Symbol(asyncId)]: 110,
+        [Symbol(bytesRead)]: 0,
+        [Symbol(asyncId)]: 111,
+        [Symbol(triggerAsyncId)]: 13 },
+     connection: 
+      Socket {
+        connecting: false,
+        _hadError: false,
+        _handle: [Object],
+        _parent: null,
+        _host: null,
+        _readableState: [Object],
+        readable: true,
+        domain: null,
+        _events: [Object],
+        _eventsCount: 10,
+        _maxListeners: undefined,
+        _writableState: [Object],
+        writable: true,
+        allowHalfOpen: true,
+        _bytesDispatched: 0,
+        _sockname: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        server: [Object],
+        _server: [Object],
+        _idleTimeout: 120000,
+        _idleNext: [Object],
+        _idlePrev: [Object],
+        _idleStart: 24999,
+        _destroyed: false,
+        parser: [Object],
+        on: [Function: socketOnWrap],
+        _paused: false,
+        read: [Function],
+        _consuming: true,
+        _httpMessage: [Object],
+        [Symbol(asyncId)]: 110,
+        [Symbol(bytesRead)]: 0,
+        [Symbol(asyncId)]: 111,
+        [Symbol(triggerAsyncId)]: 13 },
+     httpVersionMajor: 1,
+     httpVersionMinor: 1,
+     httpVersion: '1.1',
+     complete: true,
+     headers: 
+      { host: 'localhost:3000',
+        connection: 'keep-alive',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*;q=0.8,application/signed-exchange;v=b3',
+        referer: 'http://localhost:3000/',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'en-US,en;q=0.9,ru;q=0.8',
+        'if-none-match': '"588-3Ki2s3QPgFE+/BcwGp48BAGImk8"' },
+     rawHeaders: 
+      [ 'Host',
+        'localhost:3000',
+        'Connection',
+        'keep-alive',
+        'Upgrade-Insecure-Requests',
+        '1',
+        'User-Agent',
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+        'Accept',
+        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*;q=0.8,application/signed-exchange;v=b3',
+        'Referer',
+        'http://localhost:3000/',
+        'Accept-Encoding',
+        'gzip, deflate, br',
+        'Accept-Language',
+        'en-US,en;q=0.9,ru;q=0.8',
+        'If-None-Match',
+        '"588-3Ki2s3QPgFE+/BcwGp48BAGImk8"' ],
+     trailers: {},
+     rawTrailers: [],
+     upgrade: false,
+     url: '/posts?id=777',
+     method: 'GET',
+     statusCode: null,
+     statusMessage: null,
+     client: 
+      Socket {
+        connecting: false,
+        _hadError: false,
+        _handle: [Object],
+        _parent: null,
+        _host: null,
+        _readableState: [Object],
+        readable: true,
+        domain: null,
+        _events: [Object],
+        _eventsCount: 10,
+        _maxListeners: undefined,
+        _writableState: [Object],
+        writable: true,
+        allowHalfOpen: true,
+        _bytesDispatched: 0,
+        _sockname: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        server: [Object],
+        _server: [Object],
+        _idleTimeout: 120000,
+        _idleNext: [Object],
+        _idlePrev: [Object],
+        _idleStart: 24999,
+        _destroyed: false,
+        parser: [Object],
+        on: [Function: socketOnWrap],
+        _paused: false,
+        read: [Function],
+        _consuming: true,
+        _httpMessage: [Object],
+        [Symbol(asyncId)]: 110,
+        [Symbol(bytesRead)]: 0,
+        [Symbol(asyncId)]: 111,
+        [Symbol(triggerAsyncId)]: 13 },
+     _consuming: false,
+     _dumped: false },
+  res: 
+   ServerResponse {
+     domain: null,
+     _events: { finish: [Function: bound resOnFinish], error: [Function] },
+     _eventsCount: 2,
+     _maxListeners: undefined,
+     output: [],
+     outputEncodings: [],
+     outputCallbacks: [],
+     outputSize: 0,
+     writable: true,
+     _last: false,
+     upgrading: false,
+     chunkedEncoding: false,
+     shouldKeepAlive: true,
+     useChunkedEncodingByDefault: true,
+     sendDate: true,
+     _removedConnection: false,
+     _removedContLen: false,
+     _removedTE: false,
+     _contentLength: null,
+     _hasBody: true,
+     _trailer: '',
+     finished: false,
+     _headerSent: false,
+     socket: 
+      Socket {
+        connecting: false,
+        _hadError: false,
+        _handle: [Object],
+        _parent: null,
+        _host: null,
+        _readableState: [Object],
+        readable: true,
+        domain: null,
+        _events: [Object],
+        _eventsCount: 10,
+        _maxListeners: undefined,
+        _writableState: [Object],
+        writable: true,
+        allowHalfOpen: true,
+        _bytesDispatched: 0,
+        _sockname: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        server: [Object],
+        _server: [Object],
+        _idleTimeout: 120000,
+        _idleNext: [Object],
+        _idlePrev: [Object],
+        _idleStart: 24999,
+        _destroyed: false,
+        parser: [Object],
+        on: [Function: socketOnWrap],
+        _paused: false,
+        read: [Function],
+        _consuming: true,
+        _httpMessage: [Circular],
+        [Symbol(asyncId)]: 110,
+        [Symbol(bytesRead)]: 0,
+        [Symbol(asyncId)]: 111,
+        [Symbol(triggerAsyncId)]: 13 },
+     connection: 
+      Socket {
+        connecting: false,
+        _hadError: false,
+        _handle: [Object],
+        _parent: null,
+        _host: null,
+        _readableState: [Object],
+        readable: true,
+        domain: null,
+        _events: [Object],
+        _eventsCount: 10,
+        _maxListeners: undefined,
+        _writableState: [Object],
+        writable: true,
+        allowHalfOpen: true,
+        _bytesDispatched: 0,
+        _sockname: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        server: [Object],
+        _server: [Object],
+        _idleTimeout: 120000,
+        _idleNext: [Object],
+        _idlePrev: [Object],
+        _idleStart: 24999,
+        _destroyed: false,
+        parser: [Object],
+        on: [Function: socketOnWrap],
+        _paused: false,
+        read: [Function],
+        _consuming: true,
+        _httpMessage: [Circular],
+        [Symbol(asyncId)]: 110,
+        [Symbol(bytesRead)]: 0,
+        [Symbol(asyncId)]: 111,
+        [Symbol(triggerAsyncId)]: 13 },
+     _header: null,
+     _onPendingData: [Function: bound updateOutgoingData],
+     _sent100: false,
+     _expect_continue: false,
+     statusCode: 200,
+     [Symbol(outHeadersKey)]: null },
+  pathname: '/posts',
+  query: { id: '777' },
+  asPath: '/posts?id=777' }
+PostPage render router:
+{ pathname: '/posts',
+  route: '/posts',
+  query: { id: '777' },
+  asPath: '/posts?id=777',
+  events: 
+   { on: [Function: on],
+     off: [Function: off],
+     emit: [Function: emit] },
+  push: [Function],
+  replace: [Function],
+  reload: [Function],
+  back: [Function],
+  prefetch: [Function],
+  beforePopState: [Function] }
+*/

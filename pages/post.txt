@@ -1,0 +1,33 @@
+import { withRouter } from 'next/router'
+
+/*
+Since Next 5 we provide a way to explicitly inject the Next.js router object into pages and all their decending components.
+The router property that is injected will hold the same values as url, like pathname, asPath, and query.
+Here's an example of using withRouter:
+*/
+class Post extends React.Component {
+  ///*
+  constructor(props) {
+    super();
+    // `super` must be used before using `this`.
+    this.id =  '123a' // constructor properties is not possible to change later for all descendants.
+    console.log(props)
+    //const r = this.props.router // create failure in constructor.
+    //console.log(r)
+  }
+  //*/
+  static async getInitialProps({query}) {
+    console.log('SLUG',query.slug)
+    return {}
+  }
+  render() {
+    //const router = this.props.router
+    const {router} = this.props
+    console.log(router)
+    this.qw = router.query.slug
+    return <h1>This is post.js page with ?slug=something as {this.qw} and id is {this.id}</h1> // {this.qw}
+  }
+}
+
+//export default Post
+export default withRouter(Post)

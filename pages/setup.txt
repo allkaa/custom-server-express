@@ -1,0 +1,17 @@
+akaarna@unl:~/custom-server-express$ install
+install: missing file operand
+Try 'install --help' for more information.
+akaarna@unl:~/custom-server-express$ npm install
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN unistore@3.2.1 requires a peer of preact@* but none is installed. You must install peer dependencies yourself.
+npm WARN custom-server-express@1.0.0 No repository field.
+npm WARN custom-server-express@1.0.0 No license field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.7 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.7: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+added 628 packages from 304 contributors and audited 6585 packages in 69.233s
+found 0 vulnerabilities
+
+akaarna@unl:~/custom-server-express$ ls -A
+node_modules  package.json  package-lock.json  pages  README.md  server.js
+akaarna@unl:~/custom-server-express$ 
